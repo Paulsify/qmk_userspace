@@ -1,31 +1,43 @@
 #include QMK_KEYBOARD_H
 #include "key_def.h"
 
+
+
+tap_dance_action_t tap_dance_actions[] = {
+
+    //tap once for y twice for esc
+    [TD_Y_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Y, KC_ESC),
+
+};
+
+
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ISRT] = LAYOUT( /* ISRT */
-    KC_Y,    KC_C,    KC_L,    KC_M,    KC_K,            KC_Z,      KC_F,    KC_U,    KC_COMM,  KC_BSPC,
-    KC_ISFT,   KC_S,    KC_R,    KC_T,    KC_G,            KC_P,      KC_NAV,  KC_E,    KC_A,     KC_OSFT,
-    KC_CTLQ,   KC_V, KC_ALTW, KC_D,    KC_J,            KC_B,      KC_H,    KC_ALTS, KC_DOT,  KC_CTLX,
-                               KC_RAS, KC_SPC,           KC_ENT, KC_LOW
+    TD(TD_Y_ESC),    KC_C,    KC_L,    KC_M,    KC_K,                            KC_Z,  KC_F,    KC_U,    KC_COMM,  KC_BSPC,
+    LGUI_T(KC_I),   LALT_T(KC_S),  LCTL_T(KC_R), LSFT_T(KC_T),KC_G,      KC_P,  RSFT_T(KC_N),  RCTL_T(KC_E),    RALT_T(KC_A), RGUI_T(KC_O),
+    KC_Q,   KC_V, KC_W, KC_D,    KC_J,                                   KC_B,  KC_H,    KC_ALTS, KC_DOT,  KC_CTLX,
+                               KC_RAS, LT(_NAV, KC_SPC),                           KC_ENT, KC_LOW
   ),
 
     [_GAME] = LAYOUT( /* [> GAME <] */
     KC_ESC,  KC_Q,    KC_W,   KC_E,   KC_R,              KC_T, KC_Y, KC_U, KC_I, KC_O,
     KC_LSFT, KC_A,    KC_S,   KC_D,   KC_F,              KC_G, KC_HNAV, KC_J, KC_K, KC_L,
-    KC_LCTL, KC_FNZ, KC_ALTX, KC_C,   KC_V,           KC_B, KC_N, KC_M, KC_LOWCOMM, KC_DOT,
-                              KC_TABL, KC_SPC,            KC_TRNS, DF(0)
+    KC_LCTL, KC_RASZ, KC_ALTX, KC_C,   KC_V,           KC_B, KC_N, KC_M, KC_LOWCOMM, KC_DOT,
+                              KC_TAB, KC_SPC,            KC_TRNS, DF(0)
   ),
 
   [_NAV] = LAYOUT( /* [> NAV <] */
-    KC_ESC,  KC_TRNS, KC_PGUP, KC_TRNS, KC_TRNS,         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LSG(KC_S),
-    KC_LEFT, KC_UP, KC_DOWN,   KC_RGHT, KC_TRNS,         KC_TRNS, KC_NO, KC_LGUI, KC_TRNS, KC_RSFT,
-    KC_TRNS, KC_HOME, KC_PGDN, KC_END,  KC_TRNS,         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_RCTL,
-                               KC_TRNS, KC_TRNS,         KC_TRNS, KC_TRNS
+    KC_ESC,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, LSG(KC_S),
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_TRNS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                 KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+                               KC_TRNS, KC_TRNS,                 KC_TRNS, KC_TRNS
   ),
 
   [_LOWER] = LAYOUT( /* [> LOWER <] */
     KC_1,    KC_2,    KC_3,    KC_4,    KC_5,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-    KC_GRV,  KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC,        KC_DQUO, KC_UNDS, KC_BSLS, KC_TRNS, KC_SCLN ,
+    KC_GRV,  KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC,        KC_DQUO, KC_UNDS, KC_BSLS, KC_TRNS, KC_SCLN,
     DF(1), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_PLUS, KC_TRNS,  KC_TRNS, KC_TRNS,
                                  KC_TRNS, KC_TRNS,        KC_TRNS, MO(7)
   ),
