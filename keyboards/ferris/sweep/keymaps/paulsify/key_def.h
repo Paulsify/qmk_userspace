@@ -26,6 +26,8 @@ enum layer_names {
 #define RCTL_E RCTL_T(KC_E)
 #define RSFT_N RSFT_T(KC_N)
 
+#define LALT_X LALT_T(KC_X)
+
 enum tap_dance_keys {
     TD_YESC,
     TD_QESC,
